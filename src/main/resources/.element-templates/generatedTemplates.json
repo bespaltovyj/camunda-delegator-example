@@ -1,0 +1,84 @@
+[
+  {
+    "id": "Generated_delegateWithCustomResolver_returnRandom",
+    "name": "delegateWithCustomResolver_returnRandom",
+    "appliesTo": [
+      "bpmn:ServiceTask"
+    ],
+    "properties": [
+      {
+        "type": "String",
+        "label": "Delegate expression",
+        "value": "${delegateWithCustomResolver_returnRandom}",
+        "editable": false,
+        "binding": {
+          "name": "camunda:delegateExpression",
+          "type": "property"
+        }
+      },
+      {
+        "type": "String",
+        "label": "result",
+        "binding": {
+          "source": "${result}",
+          "type": "camunda:outputParameter"
+        }
+      }
+    ],
+    "entriesVisible": {
+      "_all": true
+    }
+  },
+  {
+    "id": "Generated_testDelegate_returnVariable",
+    "name": "testDelegate_returnVariable",
+    "appliesTo": [
+      "bpmn:ServiceTask"
+    ],
+    "properties": [
+      {
+        "type": "String",
+        "label": "Delegate expression",
+        "value": "${testDelegate_returnVariable}",
+        "editable": false,
+        "binding": {
+          "name": "camunda:delegateExpression",
+          "type": "property"
+        }
+      },
+      {
+        "type": "String",
+        "label": "required",
+        "binding": {
+          "name": "required",
+          "type": "camunda:inputParameter"
+        },
+        "constraints": {
+          "notEmpty": true
+        }
+      },
+      {
+        "type": "String",
+        "label": "optional",
+        "binding": {
+          "name": "optional",
+          "type": "camunda:inputParameter"
+        },
+        "constraints": {
+          "notEmpty": false
+        }
+      },
+      {
+        "type": "String",
+        "label": "result",
+        "binding": {
+          "source": "${result}",
+          "type": "camunda:outputParameter"
+        }
+      }
+    ],
+    "entriesVisible": {
+      "_all": true
+    }
+  }
+]
