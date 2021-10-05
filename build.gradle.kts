@@ -21,7 +21,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
     implementation("org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp:7.14.0")
-    implementation("ru.tinkoff.top:camunda-delegator-spring-boot-starter:5.0.8")
+    implementation("ru.tinkoff.top:camunda-delegator-spring-boot-starter:5.0.9")
 
     implementation("org.springdoc:springdoc-openapi-ui:1.5.10")
     implementation("org.springdoc:springdoc-openapi-kotlin:1.5.10")
@@ -36,7 +36,7 @@ dependencies {
 
     testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
     testImplementation("org.junit.vintage:junit-vintage-engine:5.8.1")
-    testImplementation("ru.tinkoff.top:camunda-delegator-test:5.0.8")
+    testImplementation("ru.tinkoff.top:camunda-delegator-test:5.0.9")
     testImplementation("org.camunda.bpm.assert:camunda-bpm-assert:10.0.0")
     testImplementation("org.camunda.bpm.extension:camunda-bpm-process-test-coverage:0.4.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test:2.5.2")

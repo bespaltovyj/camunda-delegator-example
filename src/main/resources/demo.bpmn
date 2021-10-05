@@ -6,7 +6,7 @@
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_1r2li0c" sourceRef="StartEvent_1" targetRef="callJavaDelegate" />
     <bpmn:endEvent id="Event_0g908td">
-      <bpmn:incoming>Flow_1lw62yi</bpmn:incoming>
+      <bpmn:incoming>Flow_09jryls</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_10k47hp" sourceRef="callDelegateByFullname" targetRef="callDelegateByAlias" />
     <bpmn:serviceTask id="callDelegateByFullname" name="Вызовать делегата по имени" camunda:delegateExpression="${testDelegate_returnVariable}">
@@ -42,7 +42,7 @@
       <bpmn:incoming>Flow_1r2li0c</bpmn:incoming>
       <bpmn:outgoing>Flow_0azly7g</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="Flow_1lw62yi" sourceRef="callDelegateWithCustomResolvers" targetRef="Event_0g908td" />
+    <bpmn:sequenceFlow id="Flow_1lw62yi" sourceRef="callDelegateWithCustomResolvers" targetRef="callJavaDelegateByDelegator" />
     <bpmn:serviceTask id="callDelegateWithCustomResolvers" name="Пример делегата с кастомным резолвером аргумента" camunda:delegateExpression="${delegateWithCustomResolver_returnRandom}">
       <bpmn:extensionElements>
         <camunda:inputOutput>
@@ -52,9 +52,28 @@
       <bpmn:incoming>Flow_1shz6a7</bpmn:incoming>
       <bpmn:outgoing>Flow_1lw62yi</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_09jryls" sourceRef="callJavaDelegateByDelegator" targetRef="Event_0g908td" />
+    <bpmn:serviceTask id="callJavaDelegateByDelegator" name="Вызвать делегат написанный на Java" camunda:delegateExpression="${javaDelegateByDelegator_returnVariable}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="required">205</camunda:inputParameter>
+          <camunda:outputParameter name="resultFromDelegatorJavaDelegate">${result}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1lw62yi</bpmn:incoming>
+      <bpmn:outgoing>Flow_09jryls</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="demo">
+      <bpmndi:BPMNEdge id="Flow_1lw62yi_di" bpmnElement="Flow_1lw62yi">
+        <di:waypoint x="840" y="117" />
+        <di:waypoint x="920" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0azly7g_di" bpmnElement="Flow_0azly7g">
+        <di:waypoint x="340" y="117" />
+        <di:waypoint x="420" y="117" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1shz6a7_di" bpmnElement="Flow_1shz6a7">
         <di:waypoint x="680" y="117" />
         <di:waypoint x="740" y="117" />
@@ -67,31 +86,30 @@
         <di:waypoint x="188" y="117" />
         <di:waypoint x="240" y="117" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0azly7g_di" bpmnElement="Flow_0azly7g">
-        <di:waypoint x="340" y="117" />
-        <di:waypoint x="420" y="117" />
+      <bpmndi:BPMNEdge id="Flow_09jryls_di" bpmnElement="Flow_09jryls">
+        <di:waypoint x="1020" y="117" />
+        <di:waypoint x="1112" y="117" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1lw62yi_di" bpmnElement="Flow_1lw62yi">
-        <di:waypoint x="840" y="117" />
-        <di:waypoint x="912" y="117" />
-      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1inoft7_di" bpmnElement="callDelegateByFullname">
         <dc:Bounds x="420" y="77" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1rzj0tc_di" bpmnElement="callDelegateByAlias">
         <dc:Bounds x="580" y="77" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
-        <dc:Bounds x="152" y="99" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0yni8p0_di" bpmnElement="callJavaDelegate">
         <dc:Bounds x="240" y="77" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0g908td_di" bpmnElement="Event_0g908td">
-        <dc:Bounds x="912" y="99" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1te8b3o_di" bpmnElement="callDelegateWithCustomResolvers">
         <dc:Bounds x="740" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0g908td_di" bpmnElement="Event_0g908td">
+        <dc:Bounds x="1112" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_08qr6o0_di" bpmnElement="callJavaDelegateByDelegator">
+        <dc:Bounds x="920" y="77" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

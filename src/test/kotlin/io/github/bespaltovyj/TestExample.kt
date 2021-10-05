@@ -1,9 +1,6 @@
 package io.github.bespaltovyj
 
-import io.github.bespaltovyj.delegate.CamundaJavaDelegate
-import io.github.bespaltovyj.delegate.DelegateWithCustomResolver
-import io.github.bespaltovyj.delegate.ResultDto
-import io.github.bespaltovyj.delegate.TestDelegate
+import io.github.bespaltovyj.delegate.*
 import io.github.bespaltovyj.resolver.CustomResolver
 import org.camunda.bpm.engine.ProcessEngineConfiguration
 import org.camunda.bpm.engine.test.Deployment
@@ -24,6 +21,7 @@ import ru.tinkoff.top.camunda.delegator.delegates.resolvers.ContextVariableResol
 import ru.tinkoff.top.camunda.delegator.delegates.resolvers.DelegateExecutionResolver
 import ru.tinkoff.top.camunda.delegator.delegates.resolvers.businesskey.BusinessKeyResolver
 import ru.tinkoff.top.camunda.delegator.parser.DefaultDelegatorBpmnParseFactory
+import ru.tinkoff.top.camunda.delegator.test.DelegateMethodHandlerMockRegister
 
 
 class TestExample {
@@ -62,7 +60,8 @@ class TestExample {
         register.initDelegates(
             listOf(
                 DelegateWithCustomResolver(),
-                TestDelegate()
+                TestDelegate(),
+                JavaDelegateByDelegator()
             )
         )
 
@@ -79,13 +78,15 @@ class TestExample {
             "callJavaDelegate",
             "callDelegateByFullname",
             "callDelegateByAlias",
-            "callDelegateWithCustomResolvers"
+            "callDelegateWithCustomResolvers",
+            "callJavaDelegateByDelegator"
         )
         assertThat(process).variables()
             .containsEntry("parsedText", "localVariableValue_parsed")
             .containsEntry("delegateResult", ResultDto(17))
             .containsEntry("delegatreResultFromAlias", ResultDto(117))
             .containsKey("randomResult")
+            .containsEntry("resultFromDelegatorJavaDelegate", ResultDto(305))
         assertThat(process).isEnded
     }
 }
